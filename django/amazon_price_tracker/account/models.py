@@ -1,9 +1,11 @@
 import datetime
 
+from amazon_price_tracker.core.utils import is_password_valid_by_regex
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
+from django.core.exceptions import ValidationError
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 
 class CustomUserManager(BaseUserManager):
@@ -14,6 +16,8 @@ class CustomUserManager(BaseUserManager):
 
     def create_user(self, email, password, **extra_fields):
 
+        if not is_password_valid_by_regex(password):
+            raise ValidationError(_("Invalid password"))
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)

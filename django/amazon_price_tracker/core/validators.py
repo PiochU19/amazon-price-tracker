@@ -1,21 +1,39 @@
+from amazon_price_tracker.core.utils import is_password_valid_by_regex
 from django.core.exceptions import ValidationError
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 
-class SpecialCharValidator:
+class RegexPasswordValidator:
     """
-    Checks if there is a special
-    char in password
+    Checks if there is:
+    * special char
+    * lowercase
+    * uppercase
+    * number
     """
 
     def validate(self, password, user=None):
         """
         Method where password is validated
+        Password has to match the REGEX
         """
-        if not any(letter in "!@#$%^&*()-+?_=,<>/" for letter in password):
+
+        if not is_password_valid_by_regex(password):
             raise ValidationError(
-                _("This password must contain at least one special chararcter.")
+                _(
+                    "This password must contain at least \
+                    one uppercase, one lowercase, one \
+                    number and one special character."
+                )
             )
 
     def get_help_text(self):
-        return _("Your password must contain at least one special character.")
+        """
+        Text below is displayed in
+        User Creation Form e.g. Admin Panel
+        """
+        return _(
+            "Your password must contain at least \
+            one uppercase, one lowercase, one number \
+            and one special character."
+        )

@@ -96,7 +96,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
-    {"NAME": "amazon_price_tracker.core.validators.SpecialCharValidator"},
+    {"NAME": "amazon_price_tracker.core.validators.RegexPasswordValidator"},
 ]
 
 
