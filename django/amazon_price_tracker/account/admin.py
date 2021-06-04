@@ -59,7 +59,7 @@ class UserAdminModel(UserAdmin):
     )
     search_fields = ("first_name",)
     readonly_fields = (
-        "id",
+        "uuid",
         "date_joined",
         "last_login",
     )

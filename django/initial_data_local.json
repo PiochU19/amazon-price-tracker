@@ -1,7 +1,6 @@
 [
     {
         "model": "account.user",
-        "pk": 1,
         "fields": {
             "email": "root@root.com",
             "password": "argon2$argon2id$v=19$m=102400,t=2,p=8$MEpaa3JVdEJHVVZ4cFppa0ZlTWVaRQ$+xmq+D9nd6cAh003707S6Q",

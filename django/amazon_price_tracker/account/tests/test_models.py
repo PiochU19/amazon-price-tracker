@@ -59,3 +59,23 @@ def test_password_should_fail_due_to_no_special_character(db):
         )
     except ValidationError as error:
         assert error.messages[0] == "Invalid password"
+
+
+def test_user_manager(admin, user):
+    how_many_actives = User.objects.active().count()
+    assert how_many_actives == 2
+
+    User.objects.create_user(
+        email=faker.email(),
+        password="Afdssdf123!",
+    )
+    how_many_actives = User.objects.active().count()
+    assert how_many_actives == 3
+
+    User.objects.create_user(
+        email=faker.email(),
+        password="SAsadsdf123!",
+        is_active=False,
+    )
+    how_many_actives = User.objects.active().count()
+    assert how_many_actives == 3

@@ -1,4 +1,5 @@
 import datetime
+import uuid
 
 from amazon_price_tracker.core.utils import is_password_valid_by_regex
 from django.contrib.auth.base_user import BaseUserManager
@@ -33,6 +34,9 @@ class CustomUserManager(BaseUserManager):
 
         return self.create_user(email, password, **extra_fields)
 
+    def active(self):
+        return self.filter(is_active=True)
+
 
 class User(AbstractUser):
     """
@@ -40,6 +44,9 @@ class User(AbstractUser):
     email instead of username
     """
 
+    uuid = models.UUIDField(
+        unique=True, default=uuid.uuid4, editable=False, primary_key=True
+    )
     email = models.EmailField(unique=True)
     username = None
 
@@ -50,6 +57,8 @@ class User(AbstractUser):
 
     class Meta:
         ordering = ("-date_joined",)
+        verbose_name = "user"
+        verbose_name_plural = "users"
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
