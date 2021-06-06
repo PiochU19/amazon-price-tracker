@@ -55,11 +55,12 @@ class UserSerializer(serializers.ModelSerializer):
 
     def validate_password(self, password):
         """
-        Checks if password match the REGEX
+        Checks if password pass
+        Password Validators
         """
         try:
             password_validation.validate_password(password=password)
         except exceptions.ValidationError:
-            raise ValidationError({"password": "invalid password"})
+            raise ValidationError("invalid password")
 
         return password
