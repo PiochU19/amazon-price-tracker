@@ -20,7 +20,7 @@ const App = () => {
                 <Navbar />
                 <div className="Main">
                     <Switch>
-                        <Route exact path="/login" component={Login} />
+                        <Route exact path="/login" component={ Login } />
                     </Switch>
                 </div>
                 <Footer />

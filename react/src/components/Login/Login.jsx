@@ -1,27 +1,37 @@
 import React from "react";
 import "./Login.scss";
+import { Link } from "react-router-dom";
 
 
 const Login = () => {
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+        console.log("Submited");
+    };
+
     return (
-        <form className="Login">
+        <form className="Login" onSubmit={ handleSubmit } spellCheck="false">
             <div className="Login__title">
-                <p>
+                <h3>
                     Login
-                </p>
+                </h3>
             </div>
             <div className="Login__email">
-                <input type="text" name="email" placeholder="email" />
+                <input className="Login__input" type="text" name="email" placeholder="email" />
             </div>
             <div className="Login__password">
-                <input type="password" name="password" placeholder="password" />
+                <input className="Login__input" type="password" name="password" placeholder="password" />
             </div>
             <div className="Login__footer">
-                <p>
-                    No account? Sign up here
-                </p>
+                <h6>
+                    No account? <Link to="/register">Register here</Link>
+                </h6>
             </div>
-        </form>
+            <div className="Login__submit">
+                <input className="Login__submit-button" type="submit" value="login" />
+            </div>
+        </form >
     );
 };
 
