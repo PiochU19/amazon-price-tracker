@@ -1,0 +1,33 @@
+@import "./../../base.scss";
+
+.Navbar {
+    position: fixed;
+	left: 0;
+	top: 0;
+    min-width: 100%;
+    background-color: $dark;
+    height: 13.5vh;
+    display: flex;
+    align-items: center;
+
+    & div {
+        text-align: center;
+        flex: 1;
+    }
+}
+
+.Navbar__logo-chartsvg {
+    stroke: $green;
+    transition: all .2s linear;
+    width: 10vh;
+
+    &:hover {
+        stroke: $dark_green;
+    }
+}
+
+.Navbar__title {
+    color: $white;
+    font-family: Roboto;
+    text-decoration: solid wavy;
+}

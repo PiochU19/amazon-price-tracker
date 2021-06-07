@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.scss";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Navbar from "./components/Navbar/Navbar.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 
-export default App;
+import Login from "./components/Login/Login.jsx";
+
+const App = () => {
+    return (
+        <Router>
+            <div className="App">
+                <Helmet>
+                    <meta name="author" content="Dominik Pioś" />
+
+                    <title>Payless</title>
+                </Helmet>
+                <Navbar />
+                <div className="Main">
+                    <Switch>
+                        <Route exact path="/login" component={Login} />
+                    </Switch>
+                </div>
+                <Footer />
+            </div>
+        </Router>
+    );
+};
+
+export default App

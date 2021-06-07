@@ -1,0 +1,13 @@
+@import "./../../base.scss";
+
+.Footer {
+    position: fixed;
+	left: 0;
+	bottom: 0;
+	min-width: 100%;
+    text-align: center;
+    height: 7vh;
+    color: $white;
+    font-family: Roboto;
+    background-color: $dark;
+}
