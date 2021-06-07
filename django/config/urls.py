@@ -3,5 +3,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("account/", include("amazon_price_tracker.account.urls")),
+    path("api/account/", include("amazon_price_tracker.account.urls")),
 ]

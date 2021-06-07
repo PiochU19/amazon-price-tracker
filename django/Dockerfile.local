@@ -10,7 +10,9 @@ FROM python:${PYTHON_VERSION} as python
 # Python build stage
 FROM python as python-build-stage
 
-# install psycopg2 dependencies 
+RUN apk update
+
+# install psycopg2 dependencies
 RUN apk add \
     postgresql-dev \
     gcc python3-dev \
@@ -52,4 +54,4 @@ RUN pip install --no-cache-dir --no-index --find-links=/wheels/ /wheels/* \
 
 COPY . ${APP_HOME}
 
-ENTRYPOINT ["/amazon_price_tracker/entrypoint.local.sh"]
+ENTRYPOINT ["/amazon_price_tracker/entrypoint.sh"]

@@ -1,6 +1,9 @@
 from rest_framework import serializers
 from rest_framework.serializers import ValidationError
 
+from amazon_price_tracker.account.celery_tasks import (
+    send_email_to_confirm_account_celery_task,
+)
 from django.contrib.auth import get_user_model, password_validation
 from django.core import exceptions
 from django.db.models.fields import EmailField
@@ -42,6 +45,8 @@ class UserSerializer(serializers.ModelSerializer):
             password=data["password"],
             is_active=False,
         )
+
+        send_email_to_confirm_account_celery_task(user.pk)
 
         return user
 
