@@ -4,6 +4,7 @@ from amazon_price_tracker.account.views import (
     UserLoginAPIView,
     UserLogoutAPIView,
     UserViewSet,
+    UserAccountActivateView,
 )
 from django.urls import path
 
@@ -13,6 +14,11 @@ app_name = "account"
 urlpatterns = [
     path("login/", UserLoginAPIView.as_view(), name="login"),
     path("logout/", UserLogoutAPIView.as_view(), name="logout"),
+    path(
+        "activate/<upkb64>/<token>",
+        UserAccountActivateView.as_view(),
+        name="account_confirmation",
+    ),
 ]
 
 
