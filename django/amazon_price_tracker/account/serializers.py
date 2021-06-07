@@ -46,7 +46,7 @@ class UserSerializer(serializers.ModelSerializer):
             is_active=False,
         )
 
-        send_email_to_confirm_account_celery_task(user.pk)
+        send_email_to_confirm_account_celery_task.delay(user.pk)
 
         return user
 
