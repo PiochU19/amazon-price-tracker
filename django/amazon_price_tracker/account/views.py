@@ -1,13 +1,9 @@
-from django.shortcuts import redirect
-from rest_framework import (
-    viewsets,
-    mixins,
-    status,
-    permissions,
-)
+from rest_framework import mixins, permissions, status, views, viewsets
 from rest_framework.response import Response
-from django.contrib.auth import get_user_model
+
 from amazon_price_tracker.account.serializers import UserSerializer
+from django.contrib.auth import authenticate, get_user_model, login, logout
+from django.shortcuts import redirect
 
 User = get_user_model()
 
@@ -47,3 +43,29 @@ class UserViewSet(
             self.permission_classes = [permissions.AllowAny]
 
         return super(UserViewSet, self).get_permissions()
+
+
+class UserLoginAPIView(views.APIView):
+    """
+    POST method where user is authenticated
+    """
+
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
+        data = request.data
+        user = authenticate(email=data["email"], password=data["password"])
+        if user is not None:
+            login(request, user=user)
+            return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserLogoutAPIView(views.APIView):
+    """
+    POST method where user logout
+    """
+
+    def post(self, request):
+        logout(request)
+        return Response(status=status.HTTP_200_OK)

@@ -1,11 +1,11 @@
-from django.http import response
 import pytest
 from faker import Faker
 
 from amazon_price_tracker.core.fixtures import user
+from django.contrib.auth import get_user_model, SESSION_KEY
+from django.http import response
 from django.test import client
 from django.urls import reverse
-from django.contrib.auth import get_user_model
 
 faker = Faker()
 User = get_user_model()
@@ -76,3 +76,41 @@ def test_get_user_data_200(client, user):
     assert response.data["email"] == user.email
     assert response.data["first_name"] == user.first_name
     assert response.data["last_name"] == user.last_name
+
+
+def test_login_api_view_and_logout_api_view_200(client, db):
+    """
+    We need to create User Instance
+    And then try to login with correct credentials
+    """
+    password = "Givemejob123!"
+    email = faker.email()
+    User.objects.create_user(email=email, password=password)
+
+    url = reverse("account:login")
+    data = {
+        "email": email,
+        "password": password,
+    }
+    response = client.post(url, data)
+    assert response.status_code == 200
+    assert SESSION_KEY in client.session
+
+    url = reverse("account:logout")
+    response = client.post(url)
+    assert response.status_code == 200
+    assert not SESSION_KEY in client.session
+
+
+def test_login_api_view_400(client, db):
+    """
+    Try to login with random credentials
+    """
+    url = reverse("account:login")
+    data = {
+        "email": faker.email(),
+        "password": faker.password(),
+    }
+    response = client.post(url, data)
+    assert response.status_code == 400
+    assert SESSION_KEY not in client.session

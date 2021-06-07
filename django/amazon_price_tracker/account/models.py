@@ -16,6 +16,9 @@ class CustomUserManager(BaseUserManager):
     """
 
     def create_user(self, email, password, **extra_fields):
+        """
+        Validates password and creating User Instance
+        """
 
         if not is_password_valid_by_regex(password):
             raise ValidationError(_("Invalid password"))
@@ -27,6 +30,9 @@ class CustomUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password, **extra_fields):
+        """
+        sets values for superuser
+        """
 
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
@@ -35,6 +41,9 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
     def active(self):
+        """
+        returns all active users
+        """
         return self.filter(is_active=True)
 
 
@@ -44,6 +53,7 @@ class User(AbstractUser):
     email instead of username
     """
 
+    ## UUID instead of id to prevent danger
     uuid = models.UUIDField(
         unique=True, default=uuid.uuid4, editable=False, primary_key=True
     )
