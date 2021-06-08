@@ -8,6 +8,8 @@ import Footer from "./components/Footer/Footer.jsx";
 
 import Login from "./components/Login/Login.jsx";
 
+import P404 from "./components/P404/P404.jsx";
+
 const App = () => {
     return (
         <Router>
@@ -21,6 +23,8 @@ const App = () => {
                 <div className="Main">
                     <Switch>
                         <Route exact path="/login" component={ Login } />
+                        <Route exact path="/404" component={ P404 } />
+                        <Redirect to="/404" />
                     </Switch>
                 </div>
                 <Footer />

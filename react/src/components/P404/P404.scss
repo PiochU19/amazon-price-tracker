@@ -1,0 +1,37 @@
+@import "./../../base.scss";
+
+.P404 {
+  font-family: Roboto;
+  text-align: center;
+  margin-top: 35vh;
+}
+
+.P404__title {
+  color: $white;
+  font-size: 1.8vw;
+}
+
+.P404__link {
+  & a {
+    color: $green;
+    text-decoration: none;
+    transition: all 0.2s linear;
+    font-size: 4vw;
+  }
+}
+
+@media (min-width: $pc) {
+  .P404__title {
+    font-size: 1.5vw;
+  }
+
+  .P404__link {
+    & a {
+      font-size: 3vw;
+
+      &:hover {
+        font-size: 3.05vw;
+      }
+    }
+  }
+}
