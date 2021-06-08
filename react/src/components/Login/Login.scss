@@ -70,3 +70,15 @@
 .Login__password {
   margin-top: 1vh;
 }
+
+@media (min-width: $tablet) {
+  .Login {
+    width: 50vw;
+  }
+}
+
+@media (min-width: $pc) {
+  .Login {
+    width: 25vw;
+  }
+}
