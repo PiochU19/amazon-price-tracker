@@ -1,7 +1,7 @@
 @import "./../../base.scss";
 
 .Login {
-  border: 1px solid white;
+  border: 1px solid $white;
   border-radius: 25px;
   width: 70vw;
   margin: 23vh auto 0 auto;
@@ -25,44 +25,6 @@
 
     &:hover {
       color: $dark_green;
-    }
-  }
-}
-
-.Login__submit-button {
-  cursor: pointer;
-  font-family: Roboto;
-  padding: 12px 35px 12px 35px;
-  background-image: linear-gradient(to right, $green, $dark_green);
-  color: $white;
-  border: none;
-  border-radius: 10px;
-  transition: all 0.2s linear;
-  outline: none;
-}
-
-.Login__input {
-  padding: 10px;
-  border: 1px solid $green;
-  border-radius: 30px;
-  background-color: $dark;
-  font-family: Roboto;
-  text-align: center;
-  outline: none;
-  transition: all 0.2s linear;
-  color: $white;
-
-  &::placeholder {
-    color: $white;
-  }
-
-  &:focus {
-    border-color: $dark_green;
-    background-color: $green;
-    color: $dark;
-
-    &::placeholder {
-      color: $dark;
     }
   }
 }

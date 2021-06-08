@@ -1,0 +1,30 @@
+@import "./../../base.scss";
+
+.Register {
+  text-align: center;
+  border: 1px solid $white;
+  border-radius: 25px;
+  width: 70vw;
+  margin: 17vh auto 0 auto;
+  background-color: $blue;
+}
+
+.Register__title {
+  color: $white;
+}
+
+@media (min-width: $tablet) {
+  .Register {
+    width: 50vw;
+  }
+}
+
+@media (min-width: $pc) {
+  .Register {
+    width: 35vw;
+    margin-top: 22vh;
+  }
+  .Register {
+    width: 35vw;
+  }
+}

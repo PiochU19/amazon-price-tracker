@@ -17,3 +17,43 @@ $pc: 950px;
   font-family: Roboto;
   src: url("./assets/fonts/Roboto.ttf") format("truetype");
 }
+
+.Input {
+  padding: 10px;
+  border: 1px solid $green;
+  border-radius: 30px;
+  background-color: $dark;
+  font-family: Roboto;
+  text-align: center;
+  outline: none;
+  transition: all 0.2s linear;
+  color: $white;
+  margin-top: 1.5vh;
+
+  &::placeholder {
+    color: $white;
+  }
+
+  &:focus {
+    border-color: $dark_green;
+    background-color: $green;
+    color: $dark;
+
+    &::placeholder {
+      color: $dark;
+    }
+  }
+}
+
+.Button {
+  margin: 2vh 0 2vh 0;
+  cursor: pointer;
+  font-family: Roboto;
+  padding: 12px 35px 12px 35px;
+  background-image: linear-gradient(to right, $green, $dark_green);
+  color: $white;
+  border: none;
+  border-radius: 10px;
+  transition: all 0.2s linear;
+  outline: none;
+}

@@ -3,12 +3,13 @@ import "./App.scss";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
-import Navbar from "./components/Navbar/Navbar.jsx";
-import Footer from "./components/Footer/Footer.jsx";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 
-import Login from "./components/Login/Login.jsx";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
 
-import P404 from "./components/P404/P404.jsx";
+import P404 from "./components/P404/P404";
 
 const App = () => {
     return (
@@ -23,6 +24,7 @@ const App = () => {
                 <div className="Main">
                     <Switch>
                         <Route exact path="/login" component={ Login } />
+                        <Route exact path="/register" component={ Register } />
                         <Route exact path="/404" component={ P404 } />
                         <Redirect to="/404" />
                     </Switch>

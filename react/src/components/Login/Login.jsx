@@ -18,10 +18,10 @@ const Login = () => {
                 </h3>
             </div>
             <div className="Login__email">
-                <input className="Login__input" type="text" name="email" placeholder="email" />
+                <input className="Input" type="text" name="email" placeholder="email" />
             </div>
             <div className="Login__password">
-                <input className="Login__input" type="password" name="password" placeholder="password" />
+                <input className="Input" type="password" name="password" placeholder="password" />
             </div>
             <div className="Login__footer">
                 <h6>
@@ -29,7 +29,7 @@ const Login = () => {
                 </h6>
             </div>
             <div className="Login__submit">
-                <input className="Login__submit-button" type="submit" value="login" />
+                <input className="Button" type="submit" value="login" />
             </div>
         </form >
     );
