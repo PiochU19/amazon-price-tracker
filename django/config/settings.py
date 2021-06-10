@@ -27,9 +27,16 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-THIRD_PARTY_APPS = ["rest_framework", "corsheaders"]
+THIRD_PARTY_APPS = [
+    "rest_framework",
+    "corsheaders",
+]
 
-LOCAL_APPS = ["amazon_price_tracker.core", "amazon_price_tracker.account"]
+LOCAL_APPS = [
+    "amazon_price_tracker.core",
+    "amazon_price_tracker.account",
+    "amazon_price_tracker.products",
+]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
