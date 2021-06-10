@@ -8,6 +8,7 @@ import Footer from "./components/Footer/Footer";
 
 import Index from "./components/Index/Index";
 import Login from "./components/Login/Login";
+import Logout from "./components/Logout/Logout";
 import Register from "./components/Register/Register";
 
 import P404 from "./components/P404/P404";
@@ -26,6 +27,7 @@ const App = () => {
                     <Switch>
                         <Route exact path="/" component={ Index } />
                         <Route exact path="/login" component={ Login } />
+                        <Route exact path="/logout" component={ Logout } />
                         <Route exact path="/register" component={ Register } />
                         <Route exact path="/404" component={ P404 } />
                         <Redirect to="/404" />

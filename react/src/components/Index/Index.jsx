@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./Index.scss";
 import cookie from "react-cookies";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import Loader from "./../Loader/Loader";
+import { ReactComponent as LogoutSVG } from "./../../assets/svgs/logout.svg";
 
 
 const Index = () => {
@@ -24,7 +25,9 @@ const Index = () => {
             { isReady
                 ?
                     <>
-                        <p>kek</p>
+                        <Link to="/logout">
+                            <LogoutSVG className="LogoutSVG" />
+                        </Link>
                     </>
                 :
                 <Loader />
