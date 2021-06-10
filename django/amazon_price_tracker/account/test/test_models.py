@@ -18,6 +18,7 @@ def test_admin(admin):
     assert admin.is_superuser
     assert admin.is_staff
     assert admin.is_active
+    assert f"{admin}" == f"{admin.first_name} {admin.last_name}"
 
 
 def test_user(user):
@@ -29,6 +30,7 @@ def test_user(user):
     assert not user.is_superuser
     assert not user.is_staff
     assert user.is_active
+    assert f"{user}" == f"{user.first_name} {user.last_name}"
 
 
 def test_password_should_fail_due_to_no_upper(db):

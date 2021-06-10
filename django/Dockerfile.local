@@ -18,9 +18,16 @@ RUN apk add \
     gcc python3-dev \
     musl-dev
 
-# Argon2 dependencie
-RUN apk add argon2 \
+# Argon2 dependencies
+RUN apk add \
+    argon2 \
     libffi-dev
+
+# # lxml dependencies
+# RUN apk add \
+#     libxml2 \
+#     libxslt \
+#     libxslt-dev
 
 # install dependencies
 RUN pip install --upgrade pip

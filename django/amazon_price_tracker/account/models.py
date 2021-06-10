@@ -1,4 +1,3 @@
-import datetime
 import uuid
 
 from amazon_price_tracker.core.utils import is_password_valid_by_regex
