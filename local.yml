@@ -1,7 +1,6 @@
-version: '3.7'
+version: "3.7"
 
 services:
-
   django:
     build:
       context: ./django
@@ -22,7 +21,7 @@ services:
       - ./django/.envs/local/.env
     depends_on:
       - db
-  
+
   db:
     image: postgres:13.3-alpine
     container_name: amazon_price_tracker_postgres
@@ -32,7 +31,9 @@ services:
       - ./django/.envs/local/.env.database
 
   nginx:
-    build: ./nginx
+    build:
+      context: ./
+      dockerfile: ./nginx/Dockerfile
     container_name: amazon_price_tracker_nginx
     volumes:
       - static_volume:/amazon_price_tracker/static
@@ -57,7 +58,6 @@ services:
       - db
       - redis
       - django
-
 
 volumes:
   postgres_data:

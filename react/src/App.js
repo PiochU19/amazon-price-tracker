@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 
+import Index from "./components/Index/Index";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 
@@ -23,6 +24,7 @@ const App = () => {
                 <Navbar />
                 <div className="Main">
                     <Switch>
+                        <Route exact path="/" component={ Index } />
                         <Route exact path="/login" component={ Login } />
                         <Route exact path="/register" component={ Register } />
                         <Route exact path="/404" component={ P404 } />
