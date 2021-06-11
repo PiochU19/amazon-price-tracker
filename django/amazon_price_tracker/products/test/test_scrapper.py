@@ -1,4 +1,5 @@
 import pytest
+
 from amazon_price_tracker.products.scrapper import Scrapper
 
 
@@ -20,7 +21,7 @@ def test_scrapper_in_bad_scenario():
     """
 
     list_no_one = Scrapper("asdasdfdsfas dasfsdfsd asdasdas").get_list_of_products()
-    
+
     list_no_two = Scrapper(
         "asdskdfhskjdhfkjsdhfkjshdfkjhsdkjfhsjk"
     ).get_list_of_products()

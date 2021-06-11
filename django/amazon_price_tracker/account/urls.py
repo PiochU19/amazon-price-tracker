@@ -1,10 +1,10 @@
 from rest_framework.routers import DefaultRouter
 
 from amazon_price_tracker.account.views import (
+    UserAccountActivateView,
     UserLoginAPIView,
     UserLogoutAPIView,
     UserViewSet,
-    UserAccountActivateView,
 )
 from django.urls import path
 

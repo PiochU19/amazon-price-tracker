@@ -2,8 +2,7 @@ import pytest
 from faker import Faker
 
 from amazon_price_tracker.core.fixtures import user
-from django.contrib.auth import get_user_model, SESSION_KEY
-from django.http import response
+from django.contrib.auth import SESSION_KEY, get_user_model
 from django.test import client
 from django.urls import reverse
 

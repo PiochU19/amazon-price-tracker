@@ -105,7 +105,3 @@ class Scrapper:
             return list_of_products
 
         return None
-
-
-kek = Scrapper("Klocki Lego").get_list_of_products()
-print(len(kek))

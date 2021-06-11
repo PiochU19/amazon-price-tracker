@@ -1,18 +1,16 @@
 import os
 
-
 from rest_framework import mixins, permissions, status, views, viewsets
 from rest_framework.response import Response
 
 from amazon_price_tracker.account.serializers import UserSerializer
+from amazon_price_tracker.account.tokens import token_generator_for_activate_account
 from django.contrib.auth import authenticate, get_user_model, login, logout
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect
-from django.views import View
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
-from django.shortcuts import redirect
-from amazon_price_tracker.account.tokens import token_generator_for_activate_account
-from django.core.exceptions import ObjectDoesNotExist
+from django.views import View
 
 User = get_user_model()
 
