@@ -1,0 +1,18 @@
+@import "./../../base.scss";
+
+.Add {
+  margin-top: 18vh;
+}
+
+.Add__input,
+.Add_button {
+  text-align: center;
+}
+
+.Input__add {
+  width: 80vw;
+}
+
+.Add__loader {
+  margin-top: -180px;
+}

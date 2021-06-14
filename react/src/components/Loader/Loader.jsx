@@ -5,13 +5,13 @@ import "./Loader.scss";
 const Loader = () => {
     return (
         <>
-            <div class="content">
-                <div class="planet">
-                    <div class="ring">
+            <div className="content">
+                <div className="planet">
+                    <div className="ring">
                     </div>
-                    <div class="cover-ring">
+                    <div className="cover-ring">
                     </div>
-                    <div class="spots">
+                    <div className="spots">
                         <span></span>
                         <span></span>
                         <span></span>

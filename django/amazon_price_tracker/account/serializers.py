@@ -22,13 +22,11 @@ class UserSerializer(serializers.ModelSerializer):
             "email",
             "password",
             "password_confirmation",
-            "is_active",
-            "is_staff",
         )
         extra_kwargs = {
             "password": {"write_only": True},
-            "is_active": {"read_only": True},
-            "is_staff": {"read_only": True},
+            "email": {"write_only": True},
+            "last_name": {"write_only": True},
         }
 
     def create(self, data):

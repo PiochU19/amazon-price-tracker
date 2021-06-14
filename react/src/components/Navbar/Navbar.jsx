@@ -6,7 +6,7 @@ import { ReactComponent as ChartSVG } from "./../../assets/svgs/chart.svg";
 
 const Navbar = () => {
     return (
-        <navbar className="Navbar">
+        <header className="Navbar">
             <div className="Navbar__logo">
                 <Link to="/">
                     <ChartSVG className="Navbar__logo-chartsvg" />
@@ -17,7 +17,7 @@ const Navbar = () => {
                     Payless - Price Tracker
                 </h4>
             </div>
-        </navbar>
+        </header>
     );
 };
 

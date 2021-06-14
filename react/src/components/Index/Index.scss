@@ -1,5 +1,39 @@
 @import "./../../base.scss";
 
+.Index {
+  margin-top: 18vh;
+}
+
 .LogoutSVG {
   stroke: $green;
+}
+
+.Index__header {
+  display: flex;
+  align-items: center;
+}
+
+.Index__header-button {
+  flex: 1;
+}
+
+.Index__header-user {
+  flex: 3;
+  text-align: center;
+
+  & h2 {
+    color: $white;
+    font-size: 15px;
+  }
+}
+
+.Index__header-logout {
+  flex: 1;
+  text-align: right;
+}
+
+.Index__noprod {
+  margin-top: 10vh;
+  text-align: center;
+  color: $green;
 }
