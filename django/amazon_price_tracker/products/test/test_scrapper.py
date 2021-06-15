@@ -10,7 +10,7 @@ def test_scrapper_in_good_scenario():
 
     list_of_klocki_lego = Scrapper("Klocki Lego").get_list_of_products()
 
-    assert len(list_of_klocki_lego) == 45
+    assert len(list_of_klocki_lego) > 0
     assert list_of_klocki_lego is not None
 
 

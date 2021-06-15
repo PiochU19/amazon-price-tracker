@@ -16,3 +16,41 @@
 .Add__loader {
   margin-top: -180px;
 }
+
+.Add__price__input {
+  text-align: center;
+  padding: 1vh 0 3vh 0;
+  color: $white;
+}
+
+.Add__product {
+  display: flex;
+  align-items: center;
+  background-color: $blue;
+  border: 1px solid $green;
+  border-radius: 25px;
+  padding: 0 2vw 0 2vw;
+  margin-top: 5vw;
+
+  & div {
+    text-align: center;
+  }
+}
+
+.Add__product__image {
+  flex: 1;
+
+  & .Add__product-image {
+    width: 12vh;
+    border-radius: 25px;
+  }
+}
+
+.Add__product__name {
+  color: $white;
+  padding: 0 3vw 0 3vw;
+}
+
+.Add__product__price__button {
+  color: $white;
+}

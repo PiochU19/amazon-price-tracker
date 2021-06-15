@@ -15,7 +15,6 @@ class ProductsListAPIView(views.APIView):
     scrapped from Amazon Site by POST method
     """
 
-    permission_classes = [permissions.AllowAny]
     throttle_scope = "get_list_of_products"
 
     def post(self, request):

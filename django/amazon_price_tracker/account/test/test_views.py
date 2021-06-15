@@ -21,11 +21,7 @@ def test_user_register_201_created_and_400_due_email(client, db):
     }
     response = client.post(url, data)
     assert response.status_code == 201
-    assert response.data["email"] == data["email"]
     assert response.data["first_name"] == data["first_name"]
-    assert response.data["last_name"] == data["last_name"]
-    assert not response.data["is_active"]
-    assert not response.data["is_staff"]
 
     user = User.objects.all().first()
 
@@ -72,9 +68,7 @@ def test_get_user_data_200(client, user):
     client.force_login(user)
     response = client.get(url)
     assert response.status_code == 200
-    assert response.data["email"] == user.email
     assert response.data["first_name"] == user.first_name
-    assert response.data["last_name"] == user.last_name
 
 
 def test_login_api_view_and_logout_api_view_200(client, db):

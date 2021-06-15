@@ -12,6 +12,7 @@ const Add = () => {
 
     const initialFormData = Object.freeze({
 		product_name: '',
+        price: '',
 	});
 
     const history = useHistory();
@@ -51,27 +52,36 @@ const Add = () => {
             });
     };
 
+    const handleSubmitTrack = async e => {
+        e.preventDefault();
+        if (formData.price !== "") {
+            const id = e.target.id;
+        };
+    };
+
     return (
-        <form className="Add" onSubmit={ handleSubmit }>
+        <div className="Add">
             { ready
                 ?
                     <>
-                        <div className="Add__input">
-                            <input
-                                className="Input Input__add"
-                                type="text"
-                                id="product_name"
-                                placeholder="product name"
-                                onChange={ handleChange }
-                            />
-                        </div>
-                        <div className="Add_button">
-                            <input
-                                className="Button"
-                                type="submit"
-                                value="search"
-                            />
-                        </div>
+                        <form onSubmit={ handleSubmit }>
+                            <div className="Add__input">
+                                <input
+                                    className="Input Input__add"
+                                    type="text"
+                                    id="product_name"
+                                    placeholder="product name"
+                                    onChange={ handleChange }
+                                />
+                            </div>
+                            <div className="Add_button">
+                                <input
+                                    className="Button"
+                                    type="submit"
+                                    value="search"
+                                />
+                            </div>
+                        </form>
                         <div className="Add__body">
                             {(() => {
                                 if (fetching) {
@@ -83,10 +93,48 @@ const Add = () => {
                                 } else if (products) {
                                     return (
                                         <>
+                                            <div className="Add__price__input">
+                                                <h3>
+                                                    Set the price
+                                                </h3>
+                                                <input
+                                                    type="number"
+                                                    id="price"
+                                                    className="Input"
+                                                    placeholder="price"
+                                                    onChange={ handleChange }
+                                                />
+                                            </div>
                                             {products.map((product, index) => (
-                                                <div key={ index } id={ index }>
-                                                    { product[0] }
-                                                </div>
+                                                <form
+                                                    key={ index }
+                                                    id={ index }
+                                                    className="Add__product"
+                                                    onSubmit={ handleSubmitTrack }
+                                                >
+                                                    <div className="Add__product__image">
+                                                        <img src={ product[1] } className="Add__product-image" />
+                                                    </div>
+                                                    <div className="Add__product__name">
+                                                        <h6>
+                                                            { product[0] }
+                                                        </h6>
+                                                    </div>
+                                                    <div className="Add__product__price__button">
+                                                        <div>
+                                                            <h4>
+                                                                { product[2] } PLN
+                                                            </h4>
+                                                        </div>
+                                                        <div>
+                                                            <input
+                                                                type="submit"
+                                                                className="Button"
+                                                                value="track"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </form>
                                             ))}
                                         </>
                                     );
@@ -103,7 +151,7 @@ const Add = () => {
                 :
                     <Loader />
             }
-        </form>
+        </div>
     );
 };
 
