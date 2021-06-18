@@ -5,15 +5,15 @@ import { useHistory } from "react-router-dom";
 
 import Loader from "./../Loader/Loader";
 
-import axios from "axios";
+import axiosInstance from "./../../axios";
 
 
 const Add = () => {
 
     const initialFormData = Object.freeze({
-		product_name: '',
+        product_name: '',
         price: '',
-	});
+    });
 
     const history = useHistory();
     const [ready, setReady] = useState(false);
@@ -30,18 +30,24 @@ const Add = () => {
     }, []);
 
     const handleChange = e => {
-		updateFormData({
-			...formData,
-			[e.target.id]: e.target.value.trim(),
-		});
-	};
+        updateFormData({
+            ...formData,
+            [e.target.id]: e.target.value.trim(),
+        });
+    };
 
     const handleSubmit = async e => {
         e.preventDefault();
         setFetching(true);
 
-        axios
-            .get("https://run.mocky.io/v3/d6148a81-29b2-4a76-88c3-60dbd7f7e6a0")
+        axiosInstance
+            .post("products/list/", {
+                product_name: formData.product_name
+            }, {
+                headers: {
+                    "X-CSRFToken": cookie.load("csrftoken")
+                }
+            })
             .then(res => {
                 setProducts(res.data);
                 setFetching(false);
@@ -61,95 +67,95 @@ const Add = () => {
 
     return (
         <div className="Add">
-            { ready
+            {ready
                 ?
-                    <>
-                        <form onSubmit={ handleSubmit }>
-                            <div className="Add__input">
-                                <input
-                                    className="Input Input__add"
-                                    type="text"
-                                    id="product_name"
-                                    placeholder="product name"
-                                    onChange={ handleChange }
-                                />
-                            </div>
-                            <div className="Add_button">
-                                <input
-                                    className="Button"
-                                    type="submit"
-                                    value="search"
-                                />
-                            </div>
-                        </form>
-                        <div className="Add__body">
-                            {(() => {
-                                if (fetching) {
-                                    return (
-                                        <div className="Add__loader">
-                                            <Loader />
-                                        </div>
-                                    )
-                                } else if (products) {
-                                    return (
-                                        <>
-                                            <div className="Add__price__input">
-                                                <h3>
-                                                    Set the price
-                                                </h3>
-                                                <input
-                                                    type="number"
-                                                    id="price"
-                                                    className="Input"
-                                                    placeholder="price"
-                                                    onChange={ handleChange }
-                                                />
-                                            </div>
-                                            {products.map((product, index) => (
-                                                <form
-                                                    key={ index }
-                                                    id={ index }
-                                                    className="Add__product"
-                                                    onSubmit={ handleSubmitTrack }
-                                                >
-                                                    <div className="Add__product__image">
-                                                        <img src={ product[1] } className="Add__product-image" />
-                                                    </div>
-                                                    <div className="Add__product__name">
-                                                        <h6>
-                                                            { product[0] }
-                                                        </h6>
-                                                    </div>
-                                                    <div className="Add__product__price__button">
-                                                        <div>
-                                                            <h4>
-                                                                { product[2] } PLN
-                                                            </h4>
-                                                        </div>
-                                                        <div>
-                                                            <input
-                                                                type="submit"
-                                                                className="Button"
-                                                                value="track"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            ))}
-                                        </>
-                                    );
-                                } else if (products === null) {
-                                    return (
-                                        <p>
-                                            We couldn't find any products :(
-                                        </p>
-                                    )
-                                }
-                            })()}
+                <>
+                    <form onSubmit={handleSubmit}>
+                        <div className="Add__input">
+                            <input
+                                className="Input Input__add"
+                                type="text"
+                                id="product_name"
+                                placeholder="product name"
+                                onChange={handleChange}
+                            />
                         </div>
-                    </>
+                        <div className="Add_button">
+                            <input
+                                className="Button"
+                                type="submit"
+                                value="search"
+                            />
+                        </div>
+                    </form>
+                    <div className="Add__body">
+                        {(() => {
+                            if (fetching) {
+                                return (
+                                    <div className="Add__loader">
+                                        <Loader />
+                                    </div>
+                                )
+                            } else if (products) {
+                                return (
+                                    <>
+                                        <div className="Add__price__input">
+                                            <h3>
+                                                Set the price
+                                            </h3>
+                                            <input
+                                                type="number"
+                                                id="price"
+                                                className="Input"
+                                                placeholder="price"
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                        {products.map((product, index) => (
+                                            <form
+                                                key={index}
+                                                id={index}
+                                                className="Add__product"
+                                                onSubmit={handleSubmitTrack}
+                                            >
+                                                <div className="Add__product__image">
+                                                    <img src={product[1]} className="Add__product-image" />
+                                                </div>
+                                                <div className="Add__product__name">
+                                                    <h6>
+                                                        {product[0]}
+                                                    </h6>
+                                                </div>
+                                                <div className="Add__product__price__button">
+                                                    <div>
+                                                        <h4>
+                                                            {product[2]} PLN
+                                                        </h4>
+                                                    </div>
+                                                    <div>
+                                                        <input
+                                                            type="submit"
+                                                            className="Button"
+                                                            value="track"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        ))}
+                                    </>
+                                );
+                            } else if (products === null) {
+                                return (
+                                    <p>
+                                        We couldn't find any products :(
+                                    </p>
+                                )
+                            }
+                        })()}
+                    </div>
+                </>
                 :
-                    <Loader />
+                <Loader />
             }
         </div>
     );
