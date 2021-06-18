@@ -11,14 +11,13 @@
 
 # WORKDIR /frontend
 # COPY ./react/package.json ./
-# COPY ./react/package-lock.json ./
-# RUN npm ci --silent
+# COPY ./react/yarn.lock ./
 
 
 # # Copy whole and Build
 
 # COPY ./react/ ./
-# RUN npm run build
+# RUN yarn run build
 
 
 

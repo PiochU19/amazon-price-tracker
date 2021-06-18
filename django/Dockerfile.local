@@ -61,4 +61,6 @@ RUN pip install --no-cache-dir --no-index --find-links=/wheels/ /wheels/* \
 
 COPY . ${APP_HOME}
 
+RUN ["chmod", "+x", "/amazon_price_tracker/entrypoint.sh"]
+
 ENTRYPOINT ["/amazon_price_tracker/entrypoint.sh"]
