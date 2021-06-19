@@ -25,8 +25,11 @@ const Login = () => {
         if (cookie.load("Logged")) { // checking if cookie exist
             history.push('/');
         } else {
+            if (location.state) {
+                setMessage(location.state.message);
+            };
             setIsReady(true);
-        }
+        };
     }, []);
 
     const handleChange = e => {
