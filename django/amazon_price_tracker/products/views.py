@@ -1,9 +1,9 @@
 from rest_framework import mixins, response, status, views, viewsets
 
+from amazon_price_tracker.core.permissions import IsObjectOwner
 from amazon_price_tracker.products.models import Tracker
 from amazon_price_tracker.products.scrapper import Scrapper
 from amazon_price_tracker.products.serializers import TrackerSerializer
-from amazon_price_tracker.core.permissions import IsObjectOwner
 
 
 class ProductsListAPIView(views.APIView):
