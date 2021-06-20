@@ -1,7 +1,6 @@
 from rest_framework.routers import DefaultRouter
 
 from amazon_price_tracker.products.views import ProductsListAPIView, TrackerViewSet
-from django.conf.urls import url
 from django.urls import path
 
 app_name = "products"
