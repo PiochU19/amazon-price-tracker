@@ -3,7 +3,9 @@ import pytest
 
 from django.urls import reverse
 from django.test import client
-from amazon_price_tracker.core.fixtures import user
+from amazon_price_tracker.core.fixtures import user, admin
+from amazon_price_tracker.products.models import Tracker, Product
+from amazon_price_tracker.core.utils import slugify_pl
 
 
 def test_products_list_api_view_should_return_200(client, user):
@@ -12,7 +14,7 @@ def test_products_list_api_view_should_return_200(client, user):
         "product_name": "Klocki Lego",
     }
 
-    client.force_login(user)
+    client.force_login(user, backend=None)
     response = client.post(url, data)
 
     assert response.status_code == 200
@@ -21,7 +23,7 @@ def test_products_list_api_view_should_return_200(client, user):
 
 def test_products_list_api_view_400(client, user):
 
-    client.force_login(user)
+    client.force_login(user, backend=None)
     url = reverse("products:list_of_products")
 
     assert client.post(url).status_code == 400
@@ -41,7 +43,7 @@ def test_products_list_api_view_400(client, user):
 
 def test_products_list_api_view_throttle_rate(client, user):
 
-    client.force_login(user)
+    client.force_login(user, backend=None)
     url = reverse("products:list_of_products")
     data = {
         "product_name": "Klocki Lego",
@@ -65,3 +67,51 @@ def test_products_list_api_view_403(client):
     response = client.post(url, data)
 
     assert response.status_code == 403
+
+
+def test_tracker_view_set_403(client):
+
+    url = reverse("products:tracker-list")
+    response = client.get(url)
+
+    assert response.status_code == 403
+
+
+def test_tracker_view_set(client, admin, user):
+    client.force_login(admin, backend=None)
+    url = reverse("products:tracker-list")
+
+    data = {
+        "price": 200,
+        "link": "https://google.com",
+        "product_name": "google",
+        "image": "https://google.com/image",
+    }
+
+    response = client.post(url, data)
+
+    assert response.status_code == 201
+
+    product = Product.objects.get(name=data["product_name"])
+    product_slug = slugify_pl(data["product_name"])
+
+    assert product.link == data["link"]
+    assert product.image == data["image"]
+    assert product.slug == product_slug
+    assert product.name == data["product_name"]
+
+    assert Tracker.objects.get(product=product, user=admin)
+
+    ## login to different user to test if he can delete not his tracker
+    client.force_login(user, backend=None)
+    url = reverse("products:tracker-detail", kwargs={"product__slug": product_slug})
+
+    response = client.delete(url)
+
+    assert response.status_code == 404
+
+    client.force_login(admin)
+
+    response = client.delete(url, backend=None)
+
+    assert response.status_code == 204
