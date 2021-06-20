@@ -62,6 +62,26 @@ const Add = () => {
         e.preventDefault();
         if (formData.price !== "") {
             const id = e.target.id;
+            const product = products[id];
+
+            axiosInstance
+                .post("products/tracker/", {
+                    product_name: product[0],
+                    link: product[3],
+                    image: product[1],
+                    price: formData.price,
+                }, {
+                    headers: {
+                        "X-CSRFToken": cookie.load("csrftoken")
+                    }
+                })
+                .then(res => {
+                    console.log(res);
+                    history.push("/");
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         };
     };
 

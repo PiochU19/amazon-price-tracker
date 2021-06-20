@@ -15,10 +15,12 @@ class Product(CreatedModified):
     """
 
     ## slug instead of id
-    slug = models.SlugField(blank=True, unique=True, editable=False, primary_key=True)
-    name = models.CharField(max_length=255)
-    link = models.URLField(max_length=255)
-    image = models.URLField(max_length=255)
+    slug = models.SlugField(
+        blank=True, unique=True, editable=False, primary_key=True, max_length=500
+    )
+    name = models.CharField(max_length=500)
+    link = models.URLField(max_length=500)
+    image = models.URLField(max_length=500)
 
     class Meta:
         ordering = ("-created",)

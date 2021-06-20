@@ -20,9 +20,9 @@ class TrackerSerializer(serializers.ModelSerializer):
     C
     """
 
-    link = serializers.URLField(max_length=255, write_only=True)
-    product_name = serializers.CharField(max_length=255, write_only=True)
-    image = serializers.URLField(max_length=255, write_only=True)
+    link = serializers.URLField(max_length=500, write_only=True)
+    product_name = serializers.CharField(max_length=500, write_only=True)
+    image = serializers.URLField(max_length=500, write_only=True)
 
     class Meta:
         model = Tracker
