@@ -1,12 +1,9 @@
-from rest_framework import (
-    views,
-    response,
-    status,
-    permissions,
-    viewsets,
-    mixins,
-)
+from rest_framework import mixins, response, status, views, viewsets
+
+from amazon_price_tracker.products.models import Tracker
 from amazon_price_tracker.products.scrapper import Scrapper
+from amazon_price_tracker.products.serializers import TrackerSerializer
+from amazon_price_tracker.core.permissions import IsObjectOwner
 
 
 class ProductsListAPIView(views.APIView):
@@ -38,3 +35,25 @@ class ProductsListAPIView(views.APIView):
             pass
 
         return response.Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+class TrackerViewSet(
+    mixins.CreateModelMixin,
+    mixins.ListModelMixin,
+    mixins.DestroyModelMixin,
+    viewsets.GenericViewSet,
+):
+    """
+    Tracker Model View Set
+    """
+
+    queryset = Tracker.objects.all()
+    serializer_class = TrackerSerializer
+    permission_classes = [IsObjectOwner]
+    lookup_field = "product__slug"
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+    def get_queryset(self):
+        return Tracker.objects.filter(user=self.request.user)

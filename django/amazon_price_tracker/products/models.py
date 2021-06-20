@@ -1,6 +1,7 @@
 import uuid
 
 from amazon_price_tracker.core.models import CreatedModified
+from amazon_price_tracker.core.utils import slugify_pl
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
@@ -13,11 +14,9 @@ class Product(CreatedModified):
     for one Amazon Product
     """
 
-    ## UUID instead of id to prevent danger
-    uuid = models.UUIDField(
-        unique=True, default=uuid.uuid4, editable=False, primary_key=True
-    )
-    name = models.CharField(max_length=100)
+    ## slug instead of id
+    slug = models.SlugField(blank=True, unique=True, editable=False, primary_key=True)
+    name = models.CharField(max_length=255)
     link = models.URLField(max_length=255)
     image = models.URLField(max_length=255)
 
@@ -28,6 +27,15 @@ class Product(CreatedModified):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        """
+        override save method
+        """
+
+        self.slug = slugify_pl(self.name)
+
+        super(Product, self).save(*args, **kwargs)
 
 
 class Tracker(CreatedModified):

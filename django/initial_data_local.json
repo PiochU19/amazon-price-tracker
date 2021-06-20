@@ -10,5 +10,17 @@
             "is_staff": true,
             "is_active": true
         }
+    },
+    {
+        "model": "account.user",
+        "fields": {
+            "email": "piochu@piochu.com",
+            "password": "argon2$argon2id$v=19$m=102400,t=2,p=8$dzhzTllrczRBRHI1clRDakg3SFM4Nw$QHftaoP2qYd8ukPJ/idd8A",
+            "first_name": "Dominik",
+            "last_name": "Pioś",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true
+        }
     }
 ]
