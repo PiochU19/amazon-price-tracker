@@ -20,6 +20,7 @@ const Add = () => {
     const [fetching, setFetching] = useState(false);
     const [products, setProducts] = useState(false);
     const [formData, updateFormData] = useState(initialFormData);
+    const [message, setMessage] = useState(false);
 
     useEffect(() => {
         if (cookie.load("Logged")) {
@@ -80,6 +81,11 @@ const Add = () => {
                 })
                 .catch(error => {
                     setProducts(null);
+                    if (error.response.status === 429) {
+                        setMessage("too many tries, try again later");
+                    } else {
+                        setMessage("we couldn't find any products");
+                    };
                 });
         };
     };

@@ -1,0 +1,14 @@
+[
+    {
+        "model": "account.user",
+        "fields": {
+            "email": "792954018@wp.pl",
+            "password": "argon2$argon2id$v=19$m=102400,t=2,p=8$emI4RVBvNHhpMElmUVBCYUkyOG9KNg$PuJowjaBfU5BERlYigirKA",
+            "first_name": "Dominik",
+            "last_name": "Pioś",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true
+        }
+    }
+]

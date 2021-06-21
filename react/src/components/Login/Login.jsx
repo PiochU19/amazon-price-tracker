@@ -56,7 +56,11 @@ const Login = () => {
                 history.push("/");
             })
             .catch(error => {
-                setMessage("something went wrong");
+                if (error.response.status === 429) {
+                    setMessage("too many tries, try again later")
+                } else {
+                    setMessage("something went wrong");
+                }
             });
     };
 

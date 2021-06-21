@@ -166,8 +166,10 @@ REST_FRAMEWORK = {
     ),
     "DEFAULT_THROTTLE_CLASSES": ("rest_framework.throttling.ScopedRateThrottle",),
     "DEFAULT_THROTTLE_RATES": {
-        "registration": "10/hour",
+        "registration": "5/hour",
+        "login": "20/hour",
         "get_list_of_products": "10/hour",
+        "create_tracker": "10/hour",
     },
 }
 

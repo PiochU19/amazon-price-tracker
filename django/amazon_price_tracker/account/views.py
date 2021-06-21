@@ -35,6 +35,7 @@ class UserViewSet(
         GET method always returns
         logged in User
         """
+
         return self.request.user
 
     def list(self, request):
@@ -43,16 +44,29 @@ class UserViewSet(
         user data, by making GET request
         without provided primary key
         """
+
         return self.retrieve(request, pk=request.user.pk)
 
     def get_permissions(self):
         """
         Everybody can Create account
         """
+
         if self.request.method == "POST":
             self.permission_classes = [permissions.AllowAny]
 
         return super(UserViewSet, self).get_permissions()
+
+    def get_throttles(self):
+        """
+        custom scoped throttle
+        for POST method
+        """
+
+        if self.request.method == "POST":
+            self.throttle_scope = "registration"
+
+        return super().get_throttles()
 
 
 class UserLoginAPIView(views.APIView):
@@ -61,6 +75,7 @@ class UserLoginAPIView(views.APIView):
     """
 
     permission_classes = [permissions.AllowAny]
+    throttle_scope = "login"
 
     def post(self, request):
         data = request.data

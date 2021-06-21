@@ -62,7 +62,11 @@ const Register = () => {
                 });
             })
             .catch(error => {
-                setMessage("Something went wrong");
+                if (error.response.status === 429) {
+                    setMessage("too many tries, try again later")
+                } else {
+                    setMessage("Something went wrong");
+                };
             });
     };
 

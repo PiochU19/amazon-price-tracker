@@ -57,3 +57,14 @@ class TrackerViewSet(
 
     def get_queryset(self):
         return Tracker.objects.filter(user=self.request.user)
+
+    def get_throttles(self):
+        """
+        custom scoped throttle
+        for POST method
+        """
+
+        if self.request.method == "POST":
+            self.throttle_scope = "create_tracker"
+
+        return super().get_throttles()
