@@ -13,7 +13,7 @@ app.config_from_object("django.conf:settings", namespace="CELERY")
 app.conf.beat_schedule = {
     "every-minute": {
         "task": "amazon_price_tracker.account.celery_tasks.check_price_periodic_celery_task",
-        "schedule": crontab(minute="*/1"),
+        "schedule": crontab(hour=0, minute=0),
     }
 }
 
