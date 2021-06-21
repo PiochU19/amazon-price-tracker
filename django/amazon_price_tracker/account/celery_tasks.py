@@ -9,3 +9,8 @@ def send_email_to_confirm_account_celery_task(user_pk):
     Celery task which sends email
     """
     send_email_to_confirm_account(user_pk)
+
+
+@shared_task
+def check_price_periodic_celery_task():
+    pass

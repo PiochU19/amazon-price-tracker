@@ -22,5 +22,18 @@
             "is_staff": false,
             "is_active": true
         }
+    },
+    {
+        "model": "account.user",
+        "pk": "d3b7f227-d2a4-47b6-955f-eac7809e842a",
+        "fields": {
+            "email": "792954018@wp.pl",
+            "password": "argon2$argon2id$v=19$m=102400,t=2,p=8$dzhzTllrczRBRHI1clRDakg3SFM4Nw$QHftaoP2qYd8ukPJ/idd8A",
+            "first_name": "Dominik",
+            "last_name": "Pioś",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true
+        }
     }
 ]

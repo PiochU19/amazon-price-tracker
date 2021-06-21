@@ -32,13 +32,14 @@ THIRD_PARTY_APPS = [
     "corsheaders",
     "django_extensions",
     "drf_yasg",
+    "django_celery_beat",
 ]
 
 LOCAL_APPS = [
     "amazon_price_tracker.core",
     "amazon_price_tracker.account",
     "amazon_price_tracker.products",
-    "amazon_price_tracker.celery_tracker",
+    "amazon_price_tracker.period_task",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
