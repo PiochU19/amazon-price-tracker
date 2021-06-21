@@ -1,12 +1,10 @@
 import os
 
-
+from amazon_price_tracker.period_task.scrapper import Scrapper
+from amazon_price_tracker.products.models import Product, Tracker
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-
-from amazon_price_tracker.products.models import Product, Tracker
-from amazon_price_tracker.period_task.scrapper import Scrapper
 
 
 def send_email_to_inform_about_low_price(email_to, first_name, link):

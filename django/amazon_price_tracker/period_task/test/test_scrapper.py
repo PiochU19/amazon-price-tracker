@@ -1,6 +1,5 @@
 import pytest
 
-
 from amazon_price_tracker.period_task.scrapper import Scrapper
 
 
