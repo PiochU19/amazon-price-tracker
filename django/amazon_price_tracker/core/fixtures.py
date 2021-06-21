@@ -1,5 +1,5 @@
-import pytest
 import factory
+import pytest
 from faker import Faker
 
 from amazon_price_tracker.products.models import Product, Tracker

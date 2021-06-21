@@ -1,11 +1,10 @@
 import pytest
 
-
-from django.urls import reverse
-from django.test import client
-from amazon_price_tracker.core.fixtures import user, admin
-from amazon_price_tracker.products.models import Tracker, Product
+from amazon_price_tracker.core.fixtures import admin, user
 from amazon_price_tracker.core.utils import slugify_pl
+from amazon_price_tracker.products.models import Product, Tracker
+from django.test import client
+from django.urls import reverse
 
 
 def test_products_list_api_view_should_return_200(client, user):
