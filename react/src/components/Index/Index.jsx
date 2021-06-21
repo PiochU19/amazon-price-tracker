@@ -12,31 +12,52 @@ import axiosInstance from "./../../axios";
 const Index = () => {
 
     const history = useHistory();
-    const [data, setData] = useState(false);
-    const [trackers, setTrackers] = useState(false);
+    const [firstName, setFirstName] = useState(false);
+    const [trackers, setTrackers] = useState([]);
 
     useEffect(() => {
         if (cookie.load("Logged")) {
-
-            axiosInstance
-                .get("account/user/")
-                .then(res => {
-                    console.log(res);
-                    setData(res.data);
-                    setTrackers(res.data.trackers);
-                })
-                .catch(error => {
-                    cookie.remove("Logged");
-                    history.push("/login");
-                });
+            loadTrackers();
         } else {
             history.push("/login");
         };
     }, []);
 
+    const loadTrackers = () => {
+        axiosInstance
+            .get("account/user/")
+            .then(res => {
+                setFirstName(res.data.first_name);
+                setTrackers(res.data.trackers);
+            })
+            .catch(error => {
+                cookie.remove("Logged");
+                history.push("/login");
+            });
+    };
+
+    const handleDelete = async e => {
+        e.preventDefault();
+        setFirstName(false);
+        const slug = e.target.id;
+
+        axiosInstance
+            .delete(`products/tracker/${slug}/`, {
+                headers: {
+                    "X-CSRFToken": cookie.load("csrftoken")
+                }
+            })
+            .then(res => {
+                loadTrackers();
+            })
+            .catch(error => {
+                history.push("/login");
+            });
+    };
+
     return (
         <div className="Index">
-            {data
+            {firstName
                 ?
                 <>
                     <div className="Index__header">
@@ -47,7 +68,7 @@ const Index = () => {
                         </div>
                         <div className="Index__header-user">
                             <h2>
-                                Hello {data.first_name}!
+                                Hello {firstName}!
                             </h2>
                         </div>
                         <div className="Index__header-logout">
@@ -60,7 +81,37 @@ const Index = () => {
                         {trackers.length !== 0
                             ?
                             <>
-                                ll be trackers
+                                {trackers.map((tracker, index) => (
+                                    <form
+                                        key={index}
+                                        id={tracker.product.slug}
+                                        className="Add__product"
+                                        onSubmit={handleDelete}
+                                    >
+                                        <div className="Add__product__image">
+                                            <img src={tracker.product.image} className="Add__product-image" />
+                                        </div>
+                                        <div className="Add__product__name">
+                                            <h6>
+                                                {tracker.product.name}
+                                            </h6>
+                                        </div>
+                                        <div className="Add__product__price__button">
+                                            <div>
+                                                <h4>
+                                                    {tracker.price} PLN
+                                                </h4>
+                                            </div>
+                                            <div>
+                                                <input
+                                                    type="submit"
+                                                    className="Button"
+                                                    value="delete"
+                                                />
+                                            </div>
+                                        </div>
+                                    </form>
+                                ))}
                             </>
                             :
                             <p className="Index__noprod">

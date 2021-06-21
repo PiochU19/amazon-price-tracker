@@ -165,7 +165,7 @@ const Add = () => {
                                 );
                             } else if (products === null) {
                                 return (
-                                    <p>
+                                    <p className="Add__noneprod">
                                         We couldn't find any products :(
                                     </p>
                                 )

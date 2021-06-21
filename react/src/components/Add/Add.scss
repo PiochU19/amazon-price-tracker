@@ -31,6 +31,7 @@
   border-radius: 25px;
   padding: 0 2vw 0 2vw;
   margin-top: 5vw;
+  max-width: 90vh;
 
   & div {
     text-align: center;
@@ -41,16 +42,28 @@
   flex: 1;
 
   & .Add__product-image {
-    width: 12vh;
+    width: 100px;
+    height: 100px;
     border-radius: 25px;
+    object-fit: contain;
+    background-color: white;
   }
 }
 
 .Add__product__name {
+  flex: 1;
   color: $white;
   padding: 0 3vw 0 3vw;
+  max-width: 30%;
+  overflow-wrap: break-word;
 }
 
 .Add__product__price__button {
+  flex: 1;
   color: $white;
+}
+
+.Add__noneprod {
+  text-align: center;
+  color: $green;
 }
