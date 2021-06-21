@@ -38,6 +38,7 @@ LOCAL_APPS = [
     "amazon_price_tracker.core",
     "amazon_price_tracker.account",
     "amazon_price_tracker.products",
+    "amazon_price_tracker.celery_tracker",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
