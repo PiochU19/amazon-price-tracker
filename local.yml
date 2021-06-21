@@ -51,7 +51,7 @@ services:
       context: ./django
       dockerfile: Dockerfile.local
     container_name: amazon_price_tracker_celery
-    command: celery -A config worker -l info
+    command: celery -A config worker --beat -l info
     env_file:
       - ./django/.envs/local/.env
     depends_on:

@@ -23,7 +23,7 @@ class Product(CreatedModified):
     image = models.URLField(max_length=500)
 
     class Meta:
-        ordering = ("-created",)
+        ordering = ("created",)
         verbose_name = "product"
         verbose_name_plural = "products"
 
@@ -38,6 +38,13 @@ class Product(CreatedModified):
         self.slug = slugify_pl(self.name)
 
         super(Product, self).save(*args, **kwargs)
+
+    def get_related_trackers(self):
+        """
+        Returns list of Tracker Model
+        """
+
+        return Tracker.objects.filter(product=self.pk)
 
 
 class Tracker(CreatedModified):
@@ -58,7 +65,7 @@ class Tracker(CreatedModified):
     price = models.IntegerField()
 
     class Meta:
-        ordering = ("-created",)
+        ordering = ("created",)
         verbose_name = "tracker"
         verbose_name_plural = "trackers"
 
