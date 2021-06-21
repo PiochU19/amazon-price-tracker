@@ -46,6 +46,9 @@ class UserViewSet(
         return self.retrieve(request, pk=request.user.pk)
 
     def get_permissions(self):
+        """
+        Everybody can Create account
+        """
         if self.request.method == "POST":
             self.permission_classes = [permissions.AllowAny]
 

@@ -4,14 +4,24 @@ import cookie from "react-cookies";
 
 import Loader from "./../Loader/Loader";
 
+import axiosInstance from "../../axios";
+
 
 const Logout = () => {
 
     const history = useHistory();
 
     useEffect(() => {
-        cookie.remove("Logged");
-        history.push("/login");
+        axiosInstance
+            .post("account/logout/", {}, {
+                headers: {
+                    "X-CSRFToken": cookie.load("csrftoken")
+                }
+            })
+            .then(res => {
+                cookie.remove("Logged");
+                history.push("/login");
+            });
     }, []);
 
     return (

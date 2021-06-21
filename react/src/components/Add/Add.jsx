@@ -76,11 +76,10 @@ const Add = () => {
                     }
                 })
                 .then(res => {
-                    console.log(res);
                     history.push("/");
                 })
                 .catch(error => {
-                    console.log(error);
+                    setProducts(null);
                 });
         };
     };
