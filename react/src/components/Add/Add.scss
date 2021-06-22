@@ -24,6 +24,7 @@
 }
 
 .Add__product {
+  margin: 0 auto 0 auto;
   display: flex;
   align-items: center;
   background-color: $blue;
@@ -66,4 +67,26 @@
 .Add__noneprod {
   text-align: center;
   color: $green;
+}
+
+@media (min-width: $tablet) {
+  .Add__product-image {
+    width: 180px;
+    height: 180px;
+  }
+
+  .Input__add {
+    width: 400px;
+  }
+}
+
+@media (min-width: $pc) {
+  .Add__product-image {
+    width: 140px;
+    height: 140px;
+  }
+
+  .Input__add {
+    width: 600px;
+  }
 }
