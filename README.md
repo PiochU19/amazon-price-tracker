@@ -5,7 +5,7 @@
 
 ## 🔨  V1.0.0
 
-## [MIT LICENSE](https://github.com/PiochU19/image-loader/blob/master/LICENSE)
+## [MIT LICENSE](https://github.com/PiochU19/amazon-price-tracker/blob/main/LICENSE)
 
 ## Technologies used:
 * Django
